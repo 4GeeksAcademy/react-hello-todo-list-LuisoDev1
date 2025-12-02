@@ -12,12 +12,18 @@ const Home = () => {
 	const [taskList, setTaskList] = useState(["Hacer la tarea", "Tocar Bajo", "Estudiar React"]);
 	function addTask() {
 		setTaskList([...taskList, task])
+
 	}
+
+	const deleteCurrentTask = (itemDelete) => {
+		let newlistTask = taskList.filter(item => item != itemDelete)
+		setTaskList(newlistTask)
+		}	
 
 	return (
 		<div className="text-center d-flex flex-column">           
 
-			<h1 className="text-center mt-5 text-success" style={{fontSize:"55px"}} >Todo List</h1>
+			<h1 className="text-center mt-5 text-success" style={{fontSize:"55px", userSelect:"none"}} >Todo List</h1>
 			<input 
 				type="text" 
 				className="form-control w-25 mx-auto" 
@@ -35,19 +41,21 @@ const Home = () => {
 			
 			<p>{task}</p>
 			
-			{taskList.map((taskItem, indexAdd) => {
-				return <div className="d-flex alig-items-center justify-content-center " >
-					
-					<p className="mt-3 text-success" key={taskItem} style={{border:"2px solid #000", width:"20%", borderRadius:"15px", fontWeight:"bold"}}> {taskItem} </p>
-					
-					<button 
-						className="btn-close" 
-						onClick={() => taskList.filter((taskkItem, indexDel) => {
-							indexDel != indexAdd
-							
-						})} >
-				 	</button>
+			{taskList.map((taskItem, index) => {
+				return (
+				<div className="d-flex alig-items-center justify-content-center" >
+					<p className="mt-3 text-success" key={index} 
+						style={{border:"2px solid #000", width:"20%", borderRadius:"8px", fontWeight:"bold", userSelect:"none"}}> 
+						{taskItem} 
+						<div >
+							<button type="button" 
+							className="btn text-center p-0 btn-close " 
+							style={{ width:"60px", color:"#ddd5d5ff"}}  
+							onClick={() => deleteCurrentTask(taskItem)} ></button>
+						</div>
+					</p>			
 				</div>
+				)
 				
 			})}
 			
