@@ -37,8 +37,16 @@ const Home = () => {
 			
 			{taskList.map((taskItem, indexAdd) => {
 				return <div className="d-flex alig-items-center justify-content-center " >
+					
 					<p className="mt-3 text-success" key={taskItem} style={{border:"2px solid #000", width:"20%", borderRadius:"15px", fontWeight:"bold"}}> {taskItem} </p>
-					<button className="btb-close" onClick={() => taskList.filter((item, indexDel) => indexDel != indexAdd)} > Delete </button>
+					
+					<button 
+						className="btn-close" 
+						onClick={() => taskList.filter((taskkItem, indexDel) => {
+							indexDel != indexAdd
+							
+						})} >
+				 	</button>
 				</div>
 				
 			})}
