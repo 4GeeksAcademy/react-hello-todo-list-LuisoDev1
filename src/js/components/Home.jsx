@@ -14,7 +14,7 @@ const Home = () => {
 		setTaskList([...taskList, task])
 
 	}
-
+	{/* Esta es la funcion para borrar las tareas en tasklist, es llamada desde el onClick del btn-close */}
 	const deleteCurrentTask = (itemDelete) => {
 		let newlistTask = taskList.filter(item => item != itemDelete)
 		setTaskList(newlistTask)
