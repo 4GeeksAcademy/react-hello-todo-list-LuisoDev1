@@ -9,21 +9,21 @@ import rigoImage from "../../img/rigo-baby.jpg";
 const Home = () => {
 
 	const [task, setTask] = useState("");
-	const [taskList, setTaskList] = useState(["Hacer la tarea", "Tocar Bajo", "Estudiar React"]);
+	const [taskList, setTaskList] = useState(["Hacer ejercicios", "Tocar Música", "Estudiar React"]);
 	function addTask() {
 		setTaskList([...taskList, task])
 
 	}
 	{/* Esta es la funcion para borrar las tareas en tasklist, es llamada desde el onClick del btn-close */}
-	const deleteCurrentTask = (itemDelete) => {
-		let newlistTask = taskList.filter(item => item != itemDelete)
+	const deleteCurrentTask = (currentItem) => {
+		let newlistTask = taskList.filter( (item) => item != currentItem)
 		setTaskList(newlistTask)
 		}	
 
 	return (
 		<div className="text-center d-flex flex-column">           
 
-			<h1 className="text-center mt-5 text-success" style={{fontSize:"55px", userSelect:"none"}} >Todo List</h1>
+			<h1 className="text-center mt-5" style={{ fontSize:"55px", userSelect:"none"}} >Todo List</h1>
 			<input 
 				type="text" 
 				className="form-control w-25 mx-auto" 
@@ -36,24 +36,27 @@ const Home = () => {
 				/>
 			
 			<div className="d-flex justify-content-center my-3" >
-				<button className="btn btn-success p-0" style={{width:"80px", height:"40px"}} onClick={(addTask) }>Add Task</button>
+				<button className="btn p-0" style={{width:"80px", height:"40px", backgroundColor:"#070707ff", color:"#fff", borderRadius:"3px"}} onClick={(addTask) }>Add Task</button>
 			</div>
 			
 			<p>{task}</p>
 			
 			{taskList.map((taskItem, index) => {
 				return (
-				<div className="d-flex alig-items-center justify-content-center" >
-					<p className="mt-3 text-success" key={index} 
-						style={{border:"2px solid #000", width:"20%", borderRadius:"8px", fontWeight:"bold", userSelect:"none"}}> 
+				<div className="my-1 col-6 mx-auto d-flex justify-content-center align-items-center p-0" >
+					<p className="text-secondary p-0" key={index} 
+						style={{width:"85%", minWidth:"200px", maxWidth:"300px", borderRadius:"3px", border:"1px solid #000", fontWeight:"bold", userSelect:"none"}}> 
 						{taskItem} 
-						<div >
-							<button type="button" 
-							className="btn text-center p-0 btn-close " 
-							style={{ width:"60px", color:"#ddd5d5ff"}}  
-							onClick={() => deleteCurrentTask(taskItem)} ></button>
-						</div>
-					</p>			
+					</p>
+
+					<div className="p-0 h-0">
+						<button 
+						type="button" 
+						className="btn btn-close text-center p-3 mb-3" 
+						style={{ width:"15%", height:"3px", fontSize:"18px" }}  
+						onClick={() => deleteCurrentTask(taskItem)}
+						></button>
+					</div>			
 				</div>
 				)
 				
